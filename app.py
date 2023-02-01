@@ -28,6 +28,7 @@ prompt_input = ctk.CTkEntry(
     font=("Arial", 20),
     text_color="black",
     fg_color="white",
+    corner_radius=10,
     placeholder_text="Enter a prompt.",
 )
 prompt_input.place(x=1080, y=10)
@@ -46,7 +47,7 @@ def create_image():
 def save_image():
     global img
     date = datetime.datetime.now()
-    prompt = prompt_input.get().replace("", "_")
+    prompt = prompt_input.get()[:10]
     label =  (prompt,"-", date)
     img.save(f"images/{label}.png")
 
@@ -60,7 +61,7 @@ magic_button = ctk.CTkButton(
     command=create_image,
 )
 magic_button.configure(text="Create Image")
-magic_button.place(x=1080, y=60)
+magic_button.place(x=1080, y=55)
 
 save_button = ctk.CTkButton(
     master=None,
@@ -72,6 +73,6 @@ save_button = ctk.CTkButton(
     command=save_image,
 )
 save_button.configure(text="Save Image")
-save_button.place(x=1250, y=60)
+save_button.place(x=1250, y=55)
 
 app.mainloop()
